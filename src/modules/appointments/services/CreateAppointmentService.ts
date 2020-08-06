@@ -1,11 +1,11 @@
 import "reflect-metadata";
 
 import { startOfHour } from 'date-fns';
+import { inject, injectable } from 'tsyringe';
 
 import Appointment from '../infra/typeorm/entities/Appointment';
-
 import AppError from '@shared/errors/AppError';
-import { inject, injectable } from 'tsyringe';
+
 
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
