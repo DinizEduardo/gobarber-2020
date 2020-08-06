@@ -1,5 +1,4 @@
-import path from 'path';
-import fs from 'fs';
+import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
 
 import uploadConfig from '@config/upload';
