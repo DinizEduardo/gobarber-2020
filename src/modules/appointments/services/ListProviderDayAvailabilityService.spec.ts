@@ -1,6 +1,6 @@
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 
-import ListProviderDayAvailabilkityService from './ListProviderDayAvailabilkityService';
+import ListProviderDayAvailabilkityService from './ListProviderDayAvailabilityService';
 
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 
