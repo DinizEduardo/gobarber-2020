@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { celebrate, Segments, Joi } from 'celebrate';
 
 import multer from 'multer';
 
@@ -22,7 +23,13 @@ userRouter.patch(
   userAvatarController.update
 );
 
-userRouter.post('/', usersController.create);
+userRouter.post('/', celebrate({
+  [Segments.BODY]: {
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().required()
+  }
+}), usersController.create);
 // isso é o mesmo que
 // POST -> http://localhost:3333/appointments
 
