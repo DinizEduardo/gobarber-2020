@@ -7,6 +7,7 @@ import User from '@modules/users/infra/typeorm/entities/User';
 import AppError from '@shared/errors/AppError';
 
 import { getDaysInMonth, getDate } from 'date-fns';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
@@ -22,10 +23,14 @@ interface Request {
 class ListProviderAppointmentService {
   constructor(
     @inject('AppointmentsRepository')
-    private appointmentsRepository: IAppointmentsRepository
+    private appointmentsRepository: IAppointmentsRepository,
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider
   ) { }
 
   public async execute({ provider_id, day, month, year }: Request): Promise<Appointment[]> {
+    const cacheData = await this.cacheProvider.recover('asdas');
+    console.log(cacheData);
     const appointments = await this.appointmentsRepository.findAllInDayFromProvider(
       {
         provider_id,
@@ -34,6 +39,8 @@ class ListProviderAppointmentService {
         year
       }
     );
+
+    // await this.cacheProvider.save('asdas', 'uhasuhdas');
 
     return appointments;
 
