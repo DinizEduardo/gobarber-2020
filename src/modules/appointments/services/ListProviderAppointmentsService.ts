@@ -11,6 +11,7 @@ import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICa
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
+import { classToClass } from 'class-transformer';
 
 interface Request {
   provider_id: string;
@@ -45,7 +46,7 @@ class ListProviderAppointmentService {
 
       await this.cacheProvider.save(
         cacheKey,
-        appointments
+        classToClass(appointments)
       );
     }
 
